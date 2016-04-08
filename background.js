@@ -48,7 +48,8 @@ whenever it recceives one.
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse)
 {
 	var url = request.data;
-	archive(url);
+	var type = request.type;
+	archive(url, type);
 });
 
 /*
@@ -63,7 +64,7 @@ happening. We then extract the latest timestamp from the result we get, and use 
 function timeSince to see if it has been 24 hours since the last crawl. If it has,
 the archiveWebsite function is used to go and actually crawl the website.
 */
-function archive(pageUrl)
+function archive(pageUrl, itemType)
 {
 	chrome.storage.sync.get(
 	{
@@ -93,7 +94,7 @@ function archive(pageUrl)
 							var timeDifference = timeSince( archiveTimestamp );
 							if( timeDifference > (1000 * 3600 * 24) )
 							{
-								archiveWebsite( pageUrl );
+								archiveWebsite( pageUrl, itemType );
 							}
 							else
 							{
@@ -123,14 +124,14 @@ few error codes coming up from here!
 If the WayBack Machine can archive it, then the AJAX request will be completed
 succesfully. In this case, run the addToCount function.
 */
-function archiveWebsite( pageUrl )
+function archiveWebsite( pageUrl, itemType )
 {
 	console.log("Archiving URL " + pageUrl);
 	var archiveUrl = "https://web.archive.org/save/" + pageUrl;
 	var archiveRequest = new XMLHttpRequest();
 	archiveRequest.onreadystatechange = function()
 	{
-		if ( archiveRequest.readyState == 4 && archiveRequest.status == 200 )
+		if ( archiveRequest.readyState == 4 && archiveRequest.status == 200 && itemType == "page" )
 		{
 			addToCount();
 		}
