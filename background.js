@@ -1,6 +1,6 @@
 /*
 ArchiveTheWeb Chrome Extension
-Version 0.0.1
+Version 0.0.2
 by David Ferguson
 
 With thanks to everyone at the Internet Archive - this extension is in support
