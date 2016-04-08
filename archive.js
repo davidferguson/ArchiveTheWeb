@@ -9,7 +9,8 @@ function archivePage()
 	// Archive the HTML of this page
 	chrome.extension.sendMessage(
 	{
-		data: window.location.href
+		data: window.location.href,
+		type: "page"
 	});
 
 	// Archive all the images on this page
@@ -18,7 +19,8 @@ function archivePage()
 	{
 		chrome.extension.sendMessage(
 		{
-			data: images[i].src
+			data: images[i].src,
+			type: "image"
 		});
 	}
 
@@ -28,7 +30,8 @@ function archivePage()
 	{
 		chrome.extension.sendMessage(
 		{
-			data: images[i].src
+			data: images[i].src,
+			type: "script"
 		});
 	}
 
@@ -38,7 +41,8 @@ function archivePage()
 	{
 		chrome.extension.sendMessage(
 		{
-			data: images[i].href
+			data: images[i].href,
+			type: "css"
 		});
 	}
 }
