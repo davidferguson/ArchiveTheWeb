@@ -6,8 +6,8 @@
   "name": "ArchiveTheWeb",
   "short_name": "ArchiveTheWeb",
   "description": "Helping save the history of the web using the Internet Archive",
-  "version": "0.0.1",
-  "version_name": "0.0.1",
+  "version": "0.0.2",
+  "version_name": "0.0.2",
   "author": "David Ferguson",
   "homepage_url": "http://archive.org/",
   
